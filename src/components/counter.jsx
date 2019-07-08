@@ -101,6 +101,7 @@ class Counter extends Component {
               aria-describedby="emailHelp"
               pattern="[0-9]{16}"
               required
+              autoComplete="off"
             />
           </div>
           <div className="form-group">
@@ -111,6 +112,7 @@ class Counter extends Component {
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
               required
+              autoComplete="off"
               placeholder="MM/YY"
             />
           </div>
