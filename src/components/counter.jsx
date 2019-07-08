@@ -29,13 +29,16 @@ class Counter extends Component {
   };
 
   putDataToDB = () => {
+    let cin = getcin();
+    let amount = getamount();
+    let payFor = getPayFor();
     //send payment to database and set the state of payment to true.
     axios.defaults.headers.post["Content-Type"] = "application/json";
     axios
       .post("https://testboteddy.herokuapp.com/api/makepayment", {
-        meterNumber: window.cin,
-        Amount: window.amount,
-        Item: window.payFor
+        meterNumber: cin,
+        Amount: amount,
+        Item: payFor
       })
       .then(function(response) {
         let pID = response.data.ref;
@@ -48,7 +51,7 @@ class Counter extends Component {
         window.paymentUpdate = "Unable to make payment, please try again later";
         console.log(error);
       });
-      this.setState({pay: true});
+    this.setState({ pay: true });
   };
 
   returnPaid() {

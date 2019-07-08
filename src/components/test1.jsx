@@ -48,7 +48,7 @@ class Counter extends Component {
         window.paymentUpdate = "Unable to make payment, please try again later";
         console.log(error);
       });
-    this.setState({ pay: true });
+      this.setState({pay: true});
   };
 
   returnPaid() {
