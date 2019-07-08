@@ -29,9 +29,9 @@ class Counter extends Component {
   };
 
   putDataToDB = () => {
-    let cin = getcin();
-    let amount = getamount();
-    let payFor = getPayFor();
+    let cin = this.getcin();
+    let amount = this.getamount();
+    let payFor = this.getPayFor();
     //send payment to database and set the state of payment to true.
     axios.defaults.headers.post["Content-Type"] = "application/json";
     axios
