@@ -26,6 +26,37 @@
       window.payFor = "__PAYFOR_PLACEHOLDER__";
       window.callback_url = "__CALLBACK_URL_PLACEHOLDER__";
     </script>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.js"
+      integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI="
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="http://www.jqueryscript.net/css/jquerysctipttop.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script type="text/javascript" src="creditly.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        var creditly = Creditly.initialize(
+          ".creditly-wrapper .expiration-month-and-year",
+          ".creditly-wrapper .credit-card-number",
+          ".creditly-wrapper .security-code",
+          ".creditly-wrapper .card-type"
+        );
+
+        $(".creditly-card-form .submit").click(function(e) {
+          e.preventDefault();
+          var output = creditly.validate();
+          if (output) {
+            // Your validated credit card output
+            console.log(output);
+          }
+        });
+      });
+    </script>
+    <link rel="stylesheet" href="creditly.css" />
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

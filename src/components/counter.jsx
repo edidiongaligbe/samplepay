@@ -2,11 +2,15 @@ import React, { Component } from "react";
 import axios from "axios";
 
 class Counter extends Component {
-  state = {
-    amount: "",
-    CIN: "",
-    pay: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      amount: "",
+      CIN: "",
+      paymentUpdate: null,
+      pay: false
+    };
+  }
 
   getcin = () => {
     let cin = window.cin;
@@ -28,10 +32,17 @@ class Counter extends Component {
     return wurl;
   };
 
+  setUpdate(msg) {
+    this.setState({ paymentUpdate: msg });
+  }
+
   putDataToDB = () => {
+    var self = this;
     let cin = this.getcin();
     let amount = this.getamount();
     let payFor = this.getPayFor();
+    //let payU;
+
     //send payment to database and set the state of payment to true.
     axios.defaults.headers.post["Content-Type"] = "application/json";
     axios
@@ -40,56 +51,69 @@ class Counter extends Component {
         Amount: amount,
         Item: payFor
       })
+
       .then(function(response) {
-        let pID = response.data.ref;
-        window.paymentUpdate =
-          "Payment was successful. Please take note of the payment ID: " + pID;
+        let pID =
+          "Payment was successful. Please take note of the payment ID: " +
+          response.data.ref;
+        self.setState({ paymentUpdate: pID });
         console.log(response);
         console.log(pID);
       })
+
       .catch(function(error) {
-        window.paymentUpdate = "Unable to make payment, please try again later";
+        // payU = "Unable to make payment, please try again later";
         console.log(error);
       });
+
     this.setState({ pay: true });
   };
 
   returnPaid() {
     return (
-      <button type="submit" className="btn btn-primary">
-        Done
-      </button>
+      <React.Fragment>
+        <label>
+          <b>{this.state.paymentUpdate}</b>{" "}
+        </label>
+        <br />
+        <br />
+        <button type="submit" className="btn btn-primary doneButton">
+          Done
+        </button>
+      </React.Fragment>
     );
   }
 
   returnNotPaid() {
     return (
-      <div className="card-body">
-        <h5 className="card-title">Accepted Cards</h5>
+      <React.Fragment>
         <div>
+          <label>
+            <b>Accepted Cards: </b>
+          </label>
           <img
-            src="https://res.cloudinary.com/dwu98rqwi/image/upload/v1562154514/visa.jpg"
+            src="https://res.cloudinary.com/dwu98rqwi/image/upload/c_scale,w_39/v1562154514/visa.jpg"
             alt="visa"
             className="pcard"
           />
           <img
-            src="https://res.cloudinary.com/dwu98rqwi/image/upload/v1562154514/mastercard.jpg"
+            src="https://res.cloudinary.com/dwu98rqwi/image/upload/c_scale,w_39/v1562154514/mastercard.jpg"
             alt="master"
             className="pcard"
           />
           <img
-            src="https://res.cloudinary.com/dwu98rqwi/image/upload/v1562154514/amex.jpg"
+            src="https://res.cloudinary.com/dwu98rqwi/image/upload/c_scale,w_39/v1562154514/amex.jpg"
             alt="amex"
             className="pcard"
           />
         </div>
-        <p className="card-text wtext">
-          With supporting text below as a natural lead-in to
-        </p>
+        <br />
         <p>
           <b>Amount:</b> {this.getamount()}
           <br />
           <b>Customer No.:</b> {this.getcin()}
+          <br />
+          <b>Item:</b> {this.getPayFor()}
         </p>
         <form>
           <div className="form-group">
@@ -136,20 +160,24 @@ class Counter extends Component {
             Pay Now
           </button>
         </form>
-      </div>
+      </React.Fragment>
     );
   }
 
   render() {
     return (
-      <div className="container d-flex flex-column min-vh-100">
-        <div className="row flex-grow-1 justify-content-center align-items-center">
-          <div className="payHolder">
-            <div className="card ">
-              <div className="card-header">
-                <h4>Payment Details</h4>
+      <div className="container  py-3">
+        <div className="form-row justify-content-center">
+          <div className="col-sm-6 justify-content-center">
+            <div className="payHolder">
+              <div className="card ">
+                <div className="card-header">
+                  <h4>Payment Details</h4>
+                </div>
+                <div className="card-body">
+                  {this.state.pay ? this.returnPaid() : this.returnNotPaid()}
+                </div>
               </div>
-              {this.state.pay ? this.returnPaid() : this.returnNotPaid()}
             </div>
           </div>
         </div>
