@@ -20,12 +20,12 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>Web Pay</title>
-    <script>
+    <!--<script>
       window.amount = "__AMOUNT_PLACEHOLDER__";
       window.cin = "__CIN_PLACEHOLDER__";
       window.payFor = "__PAYFOR_PLACEHOLDER__";
       window.callback_url = "__CALLBACK_URL_PLACEHOLDER__";
-    </script>
+    </script>-->
     <script>
       function getSearchParameters() {
         var prmstr = window.location.search.substr(1);
@@ -45,7 +45,10 @@
       }
 
       var params = getSearchParameters();
-      console.log(params["amount"]);
+      window.amount = params["amount"];
+      window.cin = params["cin"];
+      window.payFor = params["payFor"];
+      window.callback_url = params["callbackUrl"];
     </script>
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.js"
