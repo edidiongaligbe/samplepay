@@ -11,6 +11,19 @@ class Counter extends Component {
       paymentStatus: null,
       pay: false
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    let burl = this.geturl();
+
+    fetch(burl, {
+      method: "POST",
+      body: { status: this.state.paymentUpdate }
+    })
+      .then(response => alert(response))
+      .catch(error => console.error("Error:", error));
   }
 
   getcin = () => {
@@ -102,19 +115,16 @@ class Counter extends Component {
   returnPaid() {
     return (
       <React.Fragment>
-        <form>
-        <p>
-          <b>{this.state.paymentUpdate}</b>{" "}
-        </p>
-        <br />
-        <input type="hidden" id="custId" name="custId" value={this.state.paymentUpdate}></input>
-        <br />
-        <button
-          type="submit"
-          className="btn btn-primary doneButton"
-        >
-          Done
-        </button>
+        <form onSubmit={this.handleSubmit}>
+          <p>
+            <b>{this.state.paymentUpdate}</b>
+          </p>
+          <br />
+          <input type="hidden" id="custId" name="custId" value="hold" />
+          <br />
+          <button type="submit" className="btn btn-primary doneButton">
+            Done
+          </button>
         </form>
       </React.Fragment>
     );

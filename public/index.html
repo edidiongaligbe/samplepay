@@ -20,12 +20,12 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>Web Pay</title>
-    <!--<script>
-      window.amount = "__AMOUNT_PLACEHOLDER__";
-      window.cin = "__CIN_PLACEHOLDER__";
-      window.payFor = "__PAYFOR_PLACEHOLDER__";
-      window.callback_url = "__CALLBACK_URL_PLACEHOLDER__";
-    </script>-->
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.js"
+      integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI="
+      crossorigin="anonymous"
+    ></script>
+    <!--Function to get parameters from URL-->
     <script>
       function getSearchParameters() {
         var prmstr = window.location.search.substr(1);
@@ -53,18 +53,12 @@
       let lfy = l.replace("%", "");
       window.payFor = lfy.replace("20", " ");
     </script>
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.slim.js"
-      integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI="
-      crossorigin="anonymous"
-    ></script>
+    <!--Send control back to bot-->
+    <script>
+     
+    </script>
 
     <link rel="stylesheet" href="creditly.css" />
-    <style>
-      .doneButton{
-        text-align: center;
-      }
-    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -79,16 +73,5 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-    <script>
-      $(document).ready(function() {
-        $(".doneButton").click(function() {
-          debugger;
-          let burl = window.callback_url;
-          $.post(burl, { status: "Scucess" }).done(function(data) {
-            alert("Data Loaded: " + data);
-          });
-        });
-      });
-    </script>
   </body>
 </html>
