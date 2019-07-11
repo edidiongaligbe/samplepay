@@ -47,7 +47,8 @@
       var params = getSearchParameters();
       window.amount = params["amount"];
       window.cin = params["cin"];
-      window.payFor = params["payFor"];
+      let l = params["payFor"];
+      window.payFor = l.replace('%',' ');
       window.callback_url = params["callbackUrl"];
     </script>
     <script
