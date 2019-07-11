@@ -45,12 +45,14 @@
       }
 
       var params = getSearchParameters();
+      
+      window.callback_url = params["callbackUrl"];
       window.amount = params["amount"];
       window.cin = params["cin"];
       let l = params["payFor"];
       let lfy = l.replace('%','');
       window.payFor = lfy.replace('20',' ');
-      window.callback_url = params["callbackUrl"];
+      
     </script>
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.js"
