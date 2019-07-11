@@ -8,6 +8,7 @@ class Counter extends Component {
       amount: "",
       CIN: "",
       paymentUpdate: null,
+      paymentStatus: null,
       pay: false
     };
   }
@@ -41,7 +42,6 @@ class Counter extends Component {
     let cin = this.getcin();
     let amount = this.getamount();
     let payFor = this.getPayFor();
-    //let payU;
 
     //send payment to database and set the state of payment to true.
     axios.defaults.headers.post["Content-Type"] = "application/json";
@@ -57,12 +57,39 @@ class Counter extends Component {
           "Payment was successful. Please take note of the payment ID: " +
           response.data.ref;
         self.setState({ paymentUpdate: pID });
+        self.setState({ paymentStatus: "Success" });
         console.log(response);
         console.log(pID);
       })
 
       .catch(function(error) {
-        // payU = "Unable to make payment, please try again later";
+        self.setState({
+          paymentUpdate:
+            "Unable to make payment, sorry for the inconvenience. If you want to try again, kindly close this tab and initiate payment from EIDA."
+        });
+        self.setState({ paymentStatus: "Failure" });
+        console.log(error);
+      });
+
+    this.setState({ pay: true });
+  };
+
+  returnToBot = () => {
+    //let burl = this.geturl();
+
+    axios.defaults.headers.post["Content-Type"] = "application/json";
+    axios
+      .post("https://testboteddy.herokuapp.com/api/makepayment", {
+        //meterNumber: cin,
+        //Amount: amount,
+        //Item: payFor
+      })
+
+      .then(function(response) {
+        console.log(response);
+      })
+
+      .catch(function(error) {
         console.log(error);
       });
 
