@@ -107,7 +107,11 @@ class Counter extends Component {
         </p>
         <br />
         <br />
-        <button type="submit" className="btn btn-primary doneButton">
+        <button
+          type="submit"
+          className="btn btn-primary doneButton"
+          onClick={() => this.returnToBot()}
+        >
           Done
         </button>
       </React.Fragment>
@@ -194,7 +198,6 @@ class Counter extends Component {
     );
   }
 
-  
   render() {
     return (
       <div className="container  py-3">
