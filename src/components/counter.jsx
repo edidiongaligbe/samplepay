@@ -99,9 +99,9 @@ class Counter extends Component {
   returnPaid() {
     return (
       <React.Fragment>
-        <label>
+        <p>
           <b>{this.state.paymentUpdate}</b>{" "}
-        </label>
+        </p>
         <br />
         <br />
         <button type="submit" className="btn btn-primary doneButton">
