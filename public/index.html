@@ -27,9 +27,10 @@
       window.callback_url = "__CALLBACK_URL_PLACEHOLDER__";
     </script>
     <script>
-      let query = window.location.search;
-      let searchParams = new URLSearchParams(query.search);
-      console.log(searchParams.get('amount'));
+      function getParam(param){
+        return new URLSearchParams(window.location.search).getParam(param);
+      }
+      console.log(getParam(amount));
     </script>
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.js"
