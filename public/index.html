@@ -48,8 +48,8 @@
       window.amount = params["amount"];
       window.cin = params["cin"];
       let l = params["payFor"];
-      let lfy = l.replace('/%/','');
-      window.payFor = lfy.replace('/20/',' ');
+      let lfy = l.replace('%','');
+      window.payFor = lfy.replace('20',' ');
       window.callback_url = params["callbackUrl"];
     </script>
     <script
