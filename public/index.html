@@ -25,35 +25,14 @@
       integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI="
       crossorigin="anonymous"
     ></script>
-    <!--Function to get parameters from URL-->
     <script>
-      function getSearchParameters() {
-        var prmstr = window.location.search.substr(1);
-        return prmstr != null && prmstr != ""
-          ? transformToAssocArray(prmstr)
-          : {};
-      }
-
-      function transformToAssocArray(prmstr) {
-        var params = {};
-        var prmarr = prmstr.split("&");
-        for (var i = 0; i < prmarr.length; i++) {
-          var tmparr = prmarr[i].split("=");
-          params[tmparr[0]] = tmparr[1];
-        }
-        return params;
-      }
-
-      var params = getSearchParameters();
-
-      window.callback_url = params["callbackUrl"];
-      window.amount = params["amount"];
-      window.cin = params["cin"];
-      let l = params["payFor"];
-      let lfy = l.replace("%", "");
-      window.payFor = lfy.replace("20", " ");
-      console.log(window.callback_url);
-    </script>
+        window.AMOUNT="__KEYWORD_PLACEHOLDER__";
+        window.CIN="__ASSIGNEE_PLACEHOLDER__";
+        window.PAYFOR="__INVENTOR_PLACEHOLDER__";
+        window.CALLBACK_URL="__CALLBACK_URL_PLACEHOLDER__";
+        </script>
+    <!--Function to get parameters from URL-->
+    
     <!--Send control back to bot-->
     <script>
      
