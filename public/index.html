@@ -26,6 +26,11 @@
       window.payFor = "__PAYFOR_PLACEHOLDER__";
       window.callback_url = "__CALLBACK_URL_PLACEHOLDER__";
     </script>
+    <script>
+      let query = window.location.search;
+      let searchParams = URLSearchParams(query.search);
+      console.log(amount);
+    </script>
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.js"
       integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI="

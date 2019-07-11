@@ -33,6 +33,10 @@ class Counter extends Component {
     return wurl;
   };
 
+  getpaymentUpdate = () => {
+    return this.state.paymentUpdate;
+  };
+
   setUpdate(msg) {
     this.setState({ paymentUpdate: msg });
   }
@@ -75,14 +79,13 @@ class Counter extends Component {
   };
 
   returnToBot = () => {
-    //let burl = this.geturl();
+    let callbackURL = this.geturl();
+    let update = this.getpaymentUpdate();
 
     axios.defaults.headers.post["Content-Type"] = "application/json";
     axios
-      .post("https://testboteddy.herokuapp.com/api/makepayment", {
-        //meterNumber: cin,
-        //Amount: amount,
-        //Item: payFor
+      .post(callbackURL, {
+        payment: update
       })
 
       .then(function(response) {
@@ -191,6 +194,7 @@ class Counter extends Component {
     );
   }
 
+  
   render() {
     return (
       <div className="container  py-3">
