@@ -60,6 +60,11 @@
     ></script>
 
     <link rel="stylesheet" href="creditly.css" />
+    <style>
+      .doneButton{
+        text-align: center;
+      }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -77,6 +82,7 @@
     <script>
       $(document).ready(function() {
         $(".doneButton").click(function() {
+          debugger;
           let burl = window.callback_url;
           $.post(burl, { status: "Scucess" }).done(function(data) {
             alert("Data Loaded: " + data);

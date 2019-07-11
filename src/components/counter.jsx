@@ -102,16 +102,20 @@ class Counter extends Component {
   returnPaid() {
     return (
       <React.Fragment>
+        <form>
         <p>
           <b>{this.state.paymentUpdate}</b>{" "}
         </p>
         <br />
+        <input type="hidden" id="custId" name="custId" value={this.state.paymentUpdate}></input>
         <br />
         <button
           type="submit"
-          className="btn btn-primary doneButton">
+          className="btn btn-primary doneButton"
+        >
           Done
         </button>
+        </form>
       </React.Fragment>
     );
   }

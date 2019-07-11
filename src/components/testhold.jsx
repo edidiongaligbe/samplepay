@@ -8,6 +8,7 @@ class Counter extends Component {
       amount: "",
       CIN: "",
       paymentUpdate: null,
+      paymentStatus: null,
       pay: false
     };
   }
@@ -32,6 +33,10 @@ class Counter extends Component {
     return wurl;
   };
 
+  getpaymentUpdate = () => {
+    return this.state.paymentUpdate;
+  };
+
   setUpdate(msg) {
     this.setState({ paymentUpdate: msg });
   }
@@ -41,7 +46,6 @@ class Counter extends Component {
     let cin = this.getcin();
     let amount = this.getamount();
     let payFor = this.getPayFor();
-    //let payU;
 
     //send payment to database and set the state of payment to true.
     axios.defaults.headers.post["Content-Type"] = "application/json";
@@ -57,12 +61,38 @@ class Counter extends Component {
           "Payment was successful. Please take note of the payment ID: " +
           response.data.ref;
         self.setState({ paymentUpdate: pID });
+        self.setState({ paymentStatus: "Success" });
         console.log(response);
         console.log(pID);
       })
 
       .catch(function(error) {
-        // payU = "Unable to make payment, please try again later";
+        self.setState({
+          paymentUpdate:
+            "Unable to make payment, sorry for the inconvenience. If you want to try again, kindly close this tab and initiate payment from EIDA."
+        });
+        self.setState({ paymentStatus: "Failure" });
+        console.log(error);
+      });
+
+    this.setState({ pay: true });
+  };
+
+  returnToBot = () => {
+    let callbackURL = this.geturl();
+    let update = this.getpaymentUpdate();
+
+    axios.defaults.headers.post["Content-Type"] = "application/json";
+    axios
+      .post(callbackURL, {
+        payment: update
+      })
+
+      .then(function(response) {
+        console.log(response);
+      })
+
+      .catch(function(error) {
         console.log(error);
       });
 
@@ -71,19 +101,24 @@ class Counter extends Component {
 
   returnPaid() {
     return (
-      <div>
-        <label><b>{this.state.paymentUpdate}</b> </label>
+      <React.Fragment>
+        <p>
+          <b>{this.state.paymentUpdate}</b>{" "}
+        </p>
         <br />
-        <button type="submit" className="btn btn-primary doneButton">
+        <br />
+        <button
+          type="submit"
+          className="btn btn-primary doneButton">
           Done
         </button>
-      </div>
+      </React.Fragment>
     );
   }
 
   returnNotPaid() {
     return (
-      <div className="card-body">
+      <React.Fragment>
         <div>
           <label>
             <b>Accepted Cards: </b>
@@ -157,7 +192,7 @@ class Counter extends Component {
             Pay Now
           </button>
         </form>
-      </div>
+      </React.Fragment>
     );
   }
 
@@ -171,7 +206,9 @@ class Counter extends Component {
                 <div className="card-header">
                   <h4>Payment Details</h4>
                 </div>
-                {this.state.pay ? this.returnPaid() : this.returnNotPaid()}
+                <div className="card-body">
+                  {this.state.pay ? this.returnPaid() : this.returnNotPaid()}
+                </div>
               </div>
             </div>
           </div>
