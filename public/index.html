@@ -48,7 +48,7 @@
       window.amount = params["amount"];
       window.cin = params["cin"];
       let l = params["payFor"];
-      window.payFor = l.replace('/%{0-9}/g',' ');
+      window.payFor = l.replace('/{%0-9}/g',' ');
       window.callback_url = params["callbackUrl"];
     </script>
     <script
