@@ -109,9 +109,7 @@ class Counter extends Component {
         <br />
         <button
           type="submit"
-          className="btn btn-primary doneButton"
-          onClick={() => this.returnToBot()}
-        >
+          className="btn btn-primary doneButton">
           Done
         </button>
       </React.Fragment>
