@@ -27,10 +27,25 @@
       window.callback_url = "__CALLBACK_URL_PLACEHOLDER__";
     </script>
     <script>
-      function getParam(param){
-        return new URLSearchParams(window.location.search).getParam(param);
+      function getSearchParameters() {
+        var prmstr = window.location.search.substr(1);
+        return prmstr != null && prmstr != ""
+          ? transformToAssocArray(prmstr)
+          : {};
       }
-      console.log(getParam(amount));
+
+      function transformToAssocArray(prmstr) {
+        var params = {};
+        var prmarr = prmstr.split("&");
+        for (var i = 0; i < prmarr.length; i++) {
+          var tmparr = prmarr[i].split("=");
+          params[tmparr[0]] = tmparr[1];
+        }
+        return params;
+      }
+
+      var params = getSearchParameters();
+      console.log(params);
     </script>
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.js"
