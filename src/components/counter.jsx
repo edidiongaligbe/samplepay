@@ -20,9 +20,7 @@ class Counter extends Component {
     let proxyUrl = "https://edcorsanywhere.herokuapp.com/";
     console.log(proxyUrl.burl);
 
-    fetch(proxyUrl + burl, {
-      method: "POST"
-    })
+    fetch(proxyUrl + burl)
       .then(response => alert(response.text))
       .catch(error => console.error("Error:", error));
   }
