@@ -16,14 +16,18 @@ class Counter extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    
+
     let burl = this.geturl();
-    let proxyUrl = 'https://edcorsanywhere.herokuapp.com/';
+    let proxyUrl = "https://edcorsanywhere.herokuapp.com/";
     console.log(burl);
 
-    fetch(proxyUrl + burl,{header:{
-      'Origin': 'https://sapmlepay.herokuapp.com/'
-    }})
+    fetch(proxyUrl + burl, {
+      header: {
+        Origin: "https://sapmlepay.herokuapp.com/",
+        'X-Requested-With':'XMLHttpRequest',
+        "Content-Type": "text/plain"
+      }
+    })
       .then(response => alert(response.text))
       .catch(error => console.error("Error:", error));
   }
