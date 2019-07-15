@@ -17,11 +17,12 @@ class Counter extends Component {
   handleSubmit(event) {
     event.preventDefault();
     let burl = this.geturl();
+    let proxyUrl = "https://edcorsanywhere.herokuapp.com/";
 
-    fetch(burl, {
+    fetch(proxyUrl + burl, {
       method: "POST",
-      headers: {'Content-Type': "text/plain" },
-      body: JSON.stringify({ status: this.state.paymentUpdate })
+      headers: { "Content-Type": "text/plain" },
+      body: { status: this.state.paymentUpdate }
     })
       .then(response => alert(response))
       .catch(error => console.error("Error:", error));
