@@ -24,9 +24,11 @@ class Counter extends Component {
     fetch(proxyUrl + burl, {
       header: {
         'method':'POST',
-        'origin': "https://sapmlepay.herokuapp.com/",
-        'x-requested-with':'XMLHttpRequest',
-        "Content-Type": "text/plain"
+        'Origin': 'https://sapmlepay.herokuapp.com/',
+        'X-Requested-With':'XMLHttpRequest',
+        'Access-Control-Allow-Origin':'https://sapmlepay.herokuapp.com/',
+        'Content-Type': 'text/plain'
+
       }
     })
       .then(response => alert(response.text))
