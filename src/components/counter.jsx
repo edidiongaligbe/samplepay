@@ -17,18 +17,19 @@ class Counter extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
+    var header = new Headers();
+
     let burl = this.geturl();
     let proxyUrl = "https://edcorsanywhere.herokuapp.com/";
     console.log(burl);
 
     fetch(burl, {
-      header: {
-        'method':'POST',
-        'Origin': 'https://sapmlepay.herokuapp.com/',
-        'X-Requested-With':'XMLHttpRequest',
-        'Access-Control-Allow-Origin':'https://sapmlepay.herokuapp.com/',
-        'Content-Type': 'text/plain'
-
+      method: "POST",
+      origin: "https://sapmlepay.herokuapp.com/",
+      headers: {
+        "Access-Control-Allow-Origin": "https://sapmlepay.herokuapp.com/",
+        "X-Requested-With": "XMLHttpRequest",
+        "Content-Type": "text/plain"
       }
     })
       .then(response => alert(response.text))
