@@ -25,6 +25,8 @@
       integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI="
       crossorigin="anonymous"
     ></script>
+
+    <!--Function to get parameters from URL-->
     <script>
       function getSearchParameters() {
         var prmstr = window.location.search.substr(1);
@@ -36,6 +38,8 @@
       function transformToAssocArray(prmstr) {
         var params = {};
         var prmarr = prmstr.split("&");
+        console.log(prmarr[0]);
+        window.callback_url = prmarr[0];
         for (var i = 0; i < prmarr.length; i++) {
           var tmparr = prmarr[i].split("=");
           params[tmparr[0]] = tmparr[1];
@@ -44,8 +48,6 @@
       }
 
       var params = getSearchParameters();
-
-      window.callback_url = params["callbackUrl"];
       window.amount = params["amount"];
       window.cin = params["cin"];
       let l = params["payFor"];
@@ -53,10 +55,6 @@
       window.payFor = lfy.replace("20", " ");
       console.log(window.callback_url);
     </script>
-    <!--Function to get parameters from URL-->
-
-    <!--Send control back to bot-->
-    <script></script>
 
     <link rel="stylesheet" href="creditly.css" />
   </head>
