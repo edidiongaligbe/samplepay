@@ -26,7 +26,6 @@ class Counter extends Component {
     console.log(burl);
 
     fetch(proxyUrl+burl, {
-      method: "POST",
       origin: "https://sapmlepay.herokuapp.com/"
     })
       .then(response => alert(response.text))
