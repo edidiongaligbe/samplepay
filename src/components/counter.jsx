@@ -21,7 +21,7 @@ class Counter extends Component {
     let proxyUrl = "https://edcorsanywhere.herokuapp.com/";
     console.log(burl);
 
-    fetch(proxyUrl + burl, {
+    fetch(burl, {
       header: {
         'method':'POST',
         'Origin': 'https://sapmlepay.herokuapp.com/',
