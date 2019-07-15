@@ -18,8 +18,8 @@ class Counter extends Component {
     event.preventDefault();
 
     var header = new Headers();
-    headers.append('Access-Control-Allow-Origin', 'https://sapmlepay.herokuapp.com/');
-    headers.append('Content-Type', 'text/plain');
+    header.append('Access-Control-Allow-Origin', 'https://sapmlepay.herokuapp.com/');
+    header.append('Content-Type', 'text/plain');
 
 
     let burl = this.geturl();
