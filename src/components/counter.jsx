@@ -18,7 +18,6 @@ class Counter extends Component {
     event.preventDefault();
 
     var header = new Headers();
-    header.append('Access-Control-Allow-Origin', 'https://sapmlepay.herokuapp.com/');
     header.append('Content-Type', 'text/plain');
 
 
