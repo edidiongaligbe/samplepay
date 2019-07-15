@@ -20,7 +20,7 @@ class Counter extends Component {
 
     fetch(burl, {
       method: "POST",
-      headers: { mode: "no-cors", "Content-Type": "application/json" },
+      headers: {'Content-Type': "text/plain" },
       body: JSON.stringify({ status: this.state.paymentUpdate })
     })
       .then(response => alert(response))
