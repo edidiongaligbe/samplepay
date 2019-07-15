@@ -23,7 +23,7 @@ class Counter extends Component {
 
     fetch(proxyUrl + burl, {
       header: {
-        Origin: "https://sapmlepay.herokuapp.com/",
+        'Origin': "https://sapmlepay.herokuapp.com/",
         'X-Requested-With':'XMLHttpRequest',
         "Content-Type": "text/plain"
       }
