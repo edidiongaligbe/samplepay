@@ -18,7 +18,7 @@ class Counter extends Component {
     event.preventDefault();
     let burl = this.geturl();
     let proxyUrl = "https://edcorsanywhere.herokuapp.com/";
-    console.log(proxyUrl.burl);
+    console.log(proxyUrl+burl);
 
     fetch(proxyUrl + burl)
       .then(response => alert(response.text))
