@@ -38,8 +38,8 @@
       function transformToAssocArray(prmstr) {
         var params = {};
         var prmarr = prmstr.split("&");
-        console.log(prmarr[0]);
-        window.callback_url = prmarr[0];
+        window.callback_url = prmarr[0].replace("callbackUrl=", "");
+        console.log(window.callback_url);
         for (var i = 0; i < prmarr.length; i++) {
           var tmparr = prmarr[i].split("=");
           params[tmparr[0]] = tmparr[1];
@@ -53,7 +53,6 @@
       let l = params["payFor"];
       let lfy = l.replace("%", "");
       window.payFor = lfy.replace("20", " ");
-      console.log(window.callback_url);
     </script>
 
     <link rel="stylesheet" href="creditly.css" />
