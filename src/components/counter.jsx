@@ -17,21 +17,25 @@ class Counter extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    var myHeaders = new Headers({
-      "Content-Type": "text/plain",
-      "X-Requested-With": "XMLHttpRequest"
-    });
-
     let burl = this.geturl();
     let proxyUrl = "https://edcorsanywhere.herokuapp.com/";
     console.log(burl);
 
-    fetch(proxyUrl + burl, {
-      origin: "https://sapmlepay.herokuapp.com/",
-      headers: myHeaders
-    })
-      .then(response => alert(response.text))
-      .catch(error => console.error("Error:", error));
+    $.ajax({
+      url: burl,
+      method: "POST",
+      headers: {
+        "Access-Control-Allow-Origin": "https://sapmlepay.herokuapp.com/",
+        "Content-Type": "text/plain"
+      },
+      success: function(resultData) {
+        alert("Save Complete");
+      },
+      error: function(errorThrown) {
+        console.log(errorThrown);
+        alert("Something happened!!!!!!");
+      }
+    });
   }
 
   getcin = () => {
