@@ -16,26 +16,7 @@ class Counter extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-
-    let burl = this.geturl();
-    let proxyUrl = "https://edcorsanywhere.herokuapp.com/";
-    console.log(burl);
-
-    $.ajax({
-      url: burl,
-      method: "POST",
-      headers: {
-        "Access-Control-Allow-Origin": "https://sapmlepay.herokuapp.com/",
-        "Content-Type": "text/plain"
-      },
-      success: function(resultData) {
-        alert("Save Complete");
-      },
-      error: function(errorThrown) {
-        console.log(errorThrown);
-        alert("Something happened!!!!!!");
-      }
-    });
+    alert("Kindly close the page and return to EIDA");
   }
 
   getcin = () => {
